@@ -77,13 +77,17 @@ enum layer_names {
   _RAISE,
   _LOWER,
   _ADJUST,
+  _NUMPAD,
+  _MOV,
   _MS,
   _MSWH,
   _ODOOPY,
   _ODOOXML
 };
 
-#define SPCMS LT(_MS, KC_SPC)
+#define SPCMS LT(_MOV, KC_SPC)
+
+#define NUMPAD LT(_NUMPAD, KC_QUOT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -95,14 +99,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  | Enter|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      | LCtrl| LAlt | LGUI | Lower| Space| Space| Raise| Left | Down |  Up  |Right |
+ * | RALT | LCtrl| LAlt | LGUI | Lower| Space| Space| Raise| Left | Down |  Up  |Right |
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_ortho_4x12(
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,       KC_T,  KC_Y,  KC_U,       KC_I,    KC_O,    KC_P,    KC_BSPC,
-    KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,       KC_G,  KC_H,  KC_J,       KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+    KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,       KC_G,  KC_H,  KC_J,       KC_K,    KC_L,    KC_SCLN, NUMPAD,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,       KC_B,  KC_N,  KC_M,       KC_COMM, KC_DOT,  KC_SLSH, KC_ENT,
-    KC_NO,   KC_LCTL, KC_LALT, KC_LGUI, MO(_LOWER), SPCMS, SPCMS, MO(_RAISE), KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+    KC_RALT,   KC_LCTL, KC_LALT, KC_LGUI, MO(_LOWER), SPCMS, SPCMS, MO(_RAISE), KC_LEFT, KC_DOWN, KC_UP, KC_RGHT
 ),
 
 /* Lower
@@ -117,10 +121,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT_ortho_4x12(
-    KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,     KC_CIRC, KC_AMPR,     KC_ASTR,    KC_LPRN, KC_RPRN, KC_TRNS,
-    KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,       KC_F6,   KC_UNDS,     KC_PLUS,    KC_LCBR, KC_RCBR, KC_PIPE,
-    KC_CAPS, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,      KC_F12,  S(KC_NUHS),  S(KC_NUBS), KC_HOME, KC_END,  KC_ENT,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, MO(_ODOOPY), MO(_ODOOPY), KC_TRNS, KC_MPRV,    KC_VOLD, KC_VOLU, KC_MNXT
+    KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,     KC_CIRC, KC_AMPR,     KC_ASTR, KC_LPRN, KC_RPRN, KC_TRNS,
+    KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,       KC_F6,   KC_UNDS,     KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,    
+    KC_CAPS, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,      KC_F12,  S(KC_NUHS),  S(KC_NUBS),  KC_HOME, KC_END,  KC_ENT,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, MO(_ODOOPY), MO(_ODOOPY), KC_TRNS, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT
 ),
 
 /* Raise
@@ -135,9 +139,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-------------------------------------------------------------------------------------'
  */
 [_RAISE] = LAYOUT_ortho_4x12(
-    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_TRNS,
-    KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS,
-    KC_CAPS, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS, KC_NUBS, KC_PGUP, KC_PGDN, KC_ENT,
+    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,         KC_6,         KC_7,    KC_8,    KC_9,    KC_0,    KC_TRNS,
+    KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,        KC_F6,        KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, 
+    KC_CAPS, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,       KC_F12,       KC_NUHS, KC_NUBS, KC_PGUP, KC_PGDN, KC_ENT,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, MO(_ODOOXML), MO(_ODOOXML), KC_TRNS, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT
 ),
 
@@ -157,6 +161,42 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,    KC_NO,  KC_NO,  KC_NO,  KC_NO,    KC_NO,  KC_NO,  KC_NO,    KC_4,   KC_5,  KC_6,   KC_NO,
     KC_NO,    KC_NO,  KC_NO,  KC_NO,  KC_NO,    KC_NO,  KC_NO,  KC_NO,    KC_1,   KC_2,  KC_3,   KC_NO,
     EEP_RST,  KC_NO,  KC_NO,  KC_NO,  KC_TRNS,  KC_NO,  KC_NO,  KC_TRNS,  KC_NO,  KC_0,  KC_NO,  KC_NO
+),
+
+/* NumPad
+ * ,----------------------------------------------------------------------------------.
+ * |      |      |     |      |      |      |      |      |  7   |  8   |  9   |      |
+ * |------+------+-----+------+------+------+------+------+------+------+------+------|
+ * |      |      |     |      |      |      |      |      |  4   |  5   |  6   |      |
+ * |------+------+-----+------+------+------+------+------+------+------+------+------|
+ * |      |      |     |      |      |      |      |      |  1   |  2   |  3   |      |
+ * |------+------+-----+------+------+------+------+------+------+------+------+------|
+ * |      |      |     |      |      |      |      |      |      |   0  |      |      |
+ * `----------------------------------------------------------------------------------'
+ */
+[_NUMPAD] = LAYOUT_ortho_4x12(
+    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_7,  KC_8, KC_9,  KC_NO,
+    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_4,  KC_5, KC_6,  KC_NO,
+    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_1,  KC_2, KC_3,  KC_NO,
+    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_0, KC_NO, KC_NO
+),
+
+/* Move
+ * ,---------------------------------------------------------------------------------------------------------------.
+ * |      |         |         |         |          |         |         |         |         |         |      |      |
+ * |------+---------+-------------------+----------+---------+---------+---------+-------------------+------+------|
+ * |      |         |         |         |          |         | Left    | Down    |  Up     |Right    |      |      |
+ * |------+---------+---------+---------+----------+---------+---------+---------+---------+---------+------+------|
+ * |      |         |         |         |          |         |         |         |         |         |      |      |
+ * |------+---------+---------+---------+----------+---------+---------+---------+---------+---------+------+------|
+ * |      |         |         |         | MO(_MSWH)|  Space  |  Space  | MO(_MS) |         |         |      |      |
+ * `---------------------------------------------------------------------------------------------------------------'
+ */
+[_MOV] = LAYOUT_ortho_4x12(
+    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,     KC_NO, KC_NO,   KC_NO, KC_NO,
+    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   KC_NO,   KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_NO, KC_NO,
+    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,     KC_NO, KC_NO,   KC_NO, KC_NO,
+    KC_NO, KC_NO, KC_NO, KC_NO, MO(_MS), KC_TRNS, KC_TRNS, MO(_MSWH), KC_NO, KC_NO,   KC_NO, KC_NO
 ),
 
 /* Mouse Move
@@ -286,28 +326,28 @@ void matrix_init_user(void) {
 
 }
 
-/*
-
- */
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     case M_OMAN:
         if (record->event.pressed) {
-            // when keycode M_OMAN is pressed
-            SEND_STRING("{\n\t'name': '',\n\t'vesion': '',\n\t'summary': '',\n\t'category: '',\n\t'author': '',\n\t'maintainer': '',\n\t'website': '',\n\t'license': '',\n\t'contributors': [\n\t\t'',\n\t],\n\t'depends': [\n\t\t'',\n\t],\n\t'external_dependencies': {\n\t\t'python': [\n\t\t\t'',\n\t\t],\n\t},\n\t'data': [\n\t\t'',\n\t],\n\t'installable': True,\n\t'auto_install': False,\n\t'application': False,\n}");
-        } else {
+        	// when keycode M_OMAN is pressed
+            SEND_STRING("{\n\t'name': '',\n'vesion': '',\n'summary': '',\n' category' : '',\n' author' : '',\n'maintainer': '',\n'website': '',\n'license': '',\n' contributors' : [\n\t'',\n\b],\n'depends': [\n\t'',\n\b],\n' external_dependencies' : {\n\t'python': [\n\t'',\n\b],\n\b},\n'data': [\n\t'',\n\b],\n' installable' : True,\n' auto_install' : False,\n' application' : False,\n\b}");
+        }
+     	else {
             // when keycode M_OMAN is released
+            unregister_code(KC_LSHIFT);
+            unregister_code(KC_N);
         }
         break;
     case M_OMOD:
         if (record->event.pressed) {
-            SEND_STRING("from odoo import api, fields, models\n\nclass ModuleName(models.Model):\n\t_name = 'module.name'\n\t_description = 'New Description'\n\tname = fields.Char(string='Name')\n\n");
+            SEND_STRING("from odoo import api, fields, models\n\nclass ModuleName(models.Model):\n\t_name = 'module.name'\n_description = 'New Description'\nname = fields.Char(string='Name')\n\n");
         }
         break;
     case M_OMODI:
         if (record->event.pressed) {
-            SEND_STRING("from odoo import api, fields, models\n\nclass ModuleName(models.Model):\n\t_inherit = 'module.name'\n\tname = fields.Char(string='Name')\n\n");
+            SEND_STRING("from odoo import api, fields, models\n\nclass ModuleName(models.Model):\n\t_inherit = 'module.name'\nname = fields.Char(string='Name')\n\n");
         }
         break;
     case M_OMODT:
@@ -382,128 +422,128 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
     case M_OMCREATE:
         if (record->event.pressed) {
-            SEND_STRING("@api.model\ndef create(self, values):\n\t# Add code here\n\treturn super(ClassName, self).create(values)\n");
+            SEND_STRING("@api.model\ndef create(self, values):\n\t# Add code here\nreturn super(ClassName, self).create(values)\n\n\b");
         }
         break;
     case M_OMWRITE:
         if (record->event.pressed) {
-            SEND_STRING("@api.multi\ndef write(self, values):\n\t# Add code here\n\treturn super(ClassName, self).write(values)\n");
+            SEND_STRING("@api.multi\ndef write(self, values):\n\t# Add code here\nreturn super(ClassName, self).write(values)\n\n\b");
         }
         break;
     case M_OMUNLINK:
         if (record->event.pressed) {
-            SEND_STRING("@api.multi\ndef unlink(self, values):\n\t# Add code here\n\treturn super(ClassName, self).unlink(values)\n");
+            SEND_STRING("@api.multi\ndef unlink(self, values):\n\t# Add code here\nreturn super(ClassName, self).unlink(values)\n\n\b");
         }
         break;
     case M_OMCOMP:
         if (record->event.pressed) {
-            SEND_STRING("@api.depends('field_name')\ndef _compute_field_name(self):\n\tself.field_name = ''\n");
+            SEND_STRING("@api.depends('field_name')\ndef _compute_field_name(self):\n\tself.field_name = ''\n\n\b");
         }
         break;
     case M_OMCHANGE:
         if (record->event.pressed) {
-            SEND_STRING("@api.onchange('field_name')\ndef _onchange_field_name(self):\n\tself.field_name = ''\n");
+            SEND_STRING("@api.onchange('field_name')\ndef _onchange_field_name(self):\n\tself.field_name = ''\n\n\b");
         }
         break;
 
     case M_OFORM:
         if (record->event.pressed) {
-            SEND_STRING("<!-- model.name form view -->\n<record id=\"model_name_view_form\" model=\"ir.ui.view\">\n\t <field name=\"name\">model.name.view.form</field>\n\t<field name=\"model\">model.name</field>\n\t<field name=\"arch\" type=\"xml\">\n\t\t<form string=\"\">\n\t\t\t<sheet>\n\t\t\t\t<group>\n\t\t\t\t\t<!-- Add your fields here -->\n\t\t\t\t</group>\n\t\t\t</sheet>\n\t\t</form>\n\t</field>\n</record>");
+            SEND_STRING("<!-- model.name form view -->\n<record id=\"model_name_view_form\"  model=\" ir.ui.view\" >\n\t <field name=\"name\">model.name.view.form</field>\n<field name=\"model\">model.name</field>\n<field name=\" arch\"  type=\"xml\">\n\t<form string=\"\">\n\t<sheet>\n\t<group>\n\t<!-- Add your fields here -->\n\b</group>\n\b</sheet>\n\b</form>\n\b</field>\n\b</record>\n\n");
         }
         break;
     case M_OFORMI:
         if (record->event.pressed) {
-            SEND_STRING("<!-- model.name inherit form view -->\n<record id=\"view_id\" model=\"ir.ui.view\">\n\t<field name=\"name\">model.name.inherit.view.form</field>\n\t<field name=\"model\">model.name</field>\n\t<field name=\"inherit_id\" ref=\"base_module.view_id\"/>\n\t<field name=\"arch\" type=\"xml\">\n\t\t<!-- Add your xpath here -->\n\t</field>\n</record>");
+            SEND_STRING("<!-- model.name inherit form view -->\n<record id=\"view_id\"  model=\" ir.ui.view\" >\n\t<field name=\"name\">model.name.inherit.view.form</field>\n<field name=\"model\">model.name</field>\n<field name=\" inherit_id\"  ref=\"base_module.view_id\"/>\n<field name=\" arch\"  type=\"xml\">\n\t<!-- Add your xpath here -->\n\b</field>\n\b</record>\n\n");
         }
         break;
     case M_OTREE:
         if (record->event.pressed) {
-            SEND_STRING("<!-- model.name tree view -->\n<record id=\"model_name_view_tree\" model=\"ir.ui.view\">\n\t<field name=\"name\">model.name.view.tree</field>\n\t<field name=\"model\">model.name</field>\n\t<field name=\"arch\" type=\"xml\">\n\t\t<tree>\n\t\t\t<!-- Add your fields here -->\n\t\t</tree>\n\t</field>\n</record>");
+            SEND_STRING("<!-- model.name tree view -->\n<record id=\"model_name_view_tree\"  model=\" ir.ui.view\" >\n\t<field name=\"name\">model.name.view.tree</field>\n<field name=\"model\">model.name</field>\n<field name=\" arch\"  type=\"xml\">\n\t<tree>\n\t<!-- Add your fields here -->\n\b</tree>\n\b</field>\n\b</record>\n\n");
         }
         break;
     case M_OTREEI:
         if (record->event.pressed) {
-            SEND_STRING("<!-- model.name inherit tree view -->\n<record id=\"view_id\" model=\"ir.ui.view\">\n\t<field name=\"name\">model.name.inherit.view.tree</field>\n\t<field name=\"model\">model.name</field>\n\t<field name=\"inherit_id\" ref=\"base_module.view_id\"/>\n\t<field name=\"arch\" type=\"xml\">\n\t\t<!-- Add your xpath here -->\n\t</field>\n</record>");
+            SEND_STRING("<!-- model.name inherit tree view -->\n<record id=\"view_id\"  model=\" ir.ui.view\" >\n\t<field name=\"name\">model.name.inherit.view.tree</field>\n<field name=\"model\">model.name</field>\n<field name=\" inherit_id\"  ref=\"base_module.view_id\"/>\n<field name=\" arch\"  type=\"xml\">\n\t<!-- Add your xpath here -->\n\b</field>\n\b</record>\n\n");
         }
         break;
     case M_OSEARCH:
         if (record->event.pressed) {
-            SEND_STRING("<!-- model.name search view -->\n<record id=\"model_name_view_search\" model=\"ir.ui.view\">\n\t<field name=\"name\">model.name.view.search</field>\n\t<field name=\"model\">model.name</field>\n\t<field name=\"arch\" type=\"xml\">\n\t\t<search string=\"Search Description\">\n\t\t\t<!-- Add your fields here -->\n\t\t</search>\n\t</field>\n</record>");
+            SEND_STRING("<!-- model.name search view -->\n<record id=\"model_name_view_search\"  model=\" ir.ui.view\" >\n\t<field name=\"name\">model.name.view.search</field>\n<field name=\"model\">model.name</field>\n<field name=\" arch\"  type=\"xml\">\n\t<search string=\"Search Description\">\n\t<!-- Add your fields here -->\n\b</search>\n\b</field>\n\b</record>\n\n");
         }
         break;
     case M_OSEARCHI:
         if (record->event.pressed) {
-            SEND_STRING("<!-- model.name inherit search view -->\n<record id=\"view_id\" model=\"ir.ui.view\">\n\t<field name=\"name\">model.name.inherit.view.search</field>\n\t<field name=\"model\">model.name</field>\n\t<field name=\"inherit_id\" ref=\"base_module.view_id\"/>\n\t<field name=\"arch\" type=\"xml\">\n\t\t<!-- Add your xpath here -->\n\t</field>\n</record>");
+            SEND_STRING("<!-- model.name inherit search view -->\n<record id=\"view_id\"  model=\" ir.ui.view\" >\n\t<field name=\"name\">model.name.inherit.view.search</field>\n<field name=\"model\">model.name</field>\n<field name=\" inherit_id\"  ref=\"base_module.view_id\"/>\n<field name=\" arch\"  type=\"xml\">\n\t<!-- Add your xpath here -->\n\b</field>\n\b</record>\n\n");
         }
         break;
     case M_OXPATH:
         if (record->event.pressed) {
-            SEND_STRING("<xpath expr=\"//field[@name='name']\" position=\"after\">\n\t<!-- Add your fields here -->\n</xpath>");
+            SEND_STRING("<xpath expr=\"//field[@name='name']\"  position=\" after\" >\n\t<!-- Add your fields here -->\n\b</xpath>\n");
         }
         break;
     case M_OXPATHATTR:
         if (record->event.pressed) {
-            SEND_STRING("<xpath expr=\"//field[@name='name']\" position=\"attributes\">\n\t<attribute name=\"attrs\">{}</attribute>\n</xpath>");
+            SEND_STRING("<xpath expr=\"//field[@name='name']\"  position=\" attributes\" >\n\t<attribute name=\" attrs\" >{}</attribute>\n\b</xpath>\n");
         }
         break;
     case M_OACT:
         if (record->event.pressed) {
-            SEND_STRING("<!-- model.name action window -->\n<record id=\"model_name_action\" model=\"ir.actions.act_window\">\n\t<field name=\"name\">model.name.action</field>\n\t<field name=\"type\">ir.actions.act_window</field>\n\t<field name=\"res_model\">model.name</field>\n\t<field name=\"view_mode\">tree,form</field>\n\t<field name=\"view_type\">form</field>\n\t<field name=\"help\" type=\"html\">\n\t\t<p class=\"oe_view_nocontent_create\">\n\t\t\t<!-- Add Text Here -->\n\t\t</p>\n\t\t<p>\n\t\t\t<!-- More details about what a user can do with this object will be OK -->\n\t\t</p>\n\t</field>\n</record>");
+            SEND_STRING("<!-- model.name action window -->\n<record id=\"model_name_action\"  model=\" ir.actions.act_window\" >\n\t<field name=\"name\">model.name.action</field>\n<field name=\"type\">ir.actions.act_window</field>\n<field name=\"res_model\">model.name</field>\n<field name=\"view_mode\">tree,form</field>\n<field name=\"view_type\">form</field>\n<field name=\"help\"  type=\"html\">\n\t<p class=\" oe_view_nocontent_create\" >\n\t<!-- Add Text Here -->\n\b</p>\n<p>\n\t<!-- More details about what a user can do with this object will be OK -->\n\b</p>\n\b</field>\n\b</record>\n\n");
         }
         break;
     case M_ONOTE:
         if (record->event.pressed) {
-            SEND_STRING("<notebook>\n\t<page string=\"\" name=\"\">\n\t\t<group>\n\t\t\t<field name=\"\"/>\n\t\t</group>\n\t</page>\n</notebook>");
+            SEND_STRING("<notebook>\n\t<page string=\" \"  name=\" \" >\n\t<group>\n\t<field name=\" \" />\n\b</group>\n\b</page>\n\b</notebook>\n");
         }
         break;
     case M_OPAGE:
         if (record->event.pressed) {
-            SEND_STRING("<page string=\"\" name=\"\">\n\t<group>\n\t\t<field name=\"\"/>\n\t</group>\n</page>");
+            SEND_STRING("<page string=\" \"  name=\" \" >\n\t<group>\n\t<field name=\" \" />\n\b</group>\n\b</page>\n");
         }
         break;
     case M_OMENUR:
         if (record->event.pressed) {
-            SEND_STRING("<!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->\n<menuitem id=\"_menu_root\" name=\"\" sequence=\"\"/>");
+            SEND_STRING("<!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->\n<menuitem id=\"_menu_root\"  name=\" \"  sequence=\" \" />\n\n");
         }
         break;
     case M_OMENUC:
         if (record->event.pressed) {
-            SEND_STRING("<!-- This Menu Item Must have a parent -->\n<menuitem id=\"_menu_categ\" name=\"\" parent=\"\" sequence=\"\"/>");
+            SEND_STRING("<!-- This Menu Item Must have a parent -->\n<menuitem id=\"_menu_categ\"  name=\" \"  parent=\" \"  sequence=\" \" />\n\n");
         }
         break;
     case M_OMENUA:
         if (record->event.pressed) {
-            SEND_STRING("<!-- This Menu Item must have a parent and an action -->\n<menuitem id=\"_menu_act\" name=\"\" parent=\"\" action=\"\" sequence=\"\"/>");
+            SEND_STRING("<!-- This Menu Item must have a parent and an action -->\n<menuitem id=\"_menu_act\"  name=\" \"  parent=\" \"  action=\" \"  sequence=\" \" />\n\n");
         }
         break;
     case M_OCRON:
         if (record->event.pressed) {
-            SEND_STRING("<!-- model.name cron -->\n<record id=\"model_name_ir_cron\" forcecreate=\"True\" model=\"ir.cron\">\n\t<field name=\"name\">model.name.ir.cron</field>\n\t<field name=\"user_id\" ref=\"base.user_root\"/>\n\t<field name=\"doall\" eval=\"False\"/>\n\t<field name=\"active\" eval=\"True\"/>\n\t<field name=\"interval_number\">1</field>\n\t<field name=\"interval_type\">minutes</field>\n\t<field name=\"numbercall\">-1</field>\n\t<field name=\"model_id\" ref=\"model_model_name\"/>\n\t<field name=\"state\">code</field>\n\t<field name=\"code\">model.method_name()</field>\n</record>");
+            SEND_STRING("<!-- model.name cron -->\n<record id=\"model_name_ir_cron\"  forcecreate=\"True\"  model=\" ir.cron\" >\n\t<field name=\"name\">model.name.ir.cron</field>\n<field name=\" user_id\"  ref=\"base.user_root\"/>\n<field name=\"doall\"  eval=\"False\"/>\n<field name=\" active\"  eval=\"True\"/>\n<field name=\" interval_number\" >1</field>\n<field name=\" interval_type\" >minutes</field>\n<field name=\"numbercall\">-1</field>\n<field name=\"model_id\"  ref=\"model_model_name\"/>\n<field name=\"state\">code</field>\n<field name=\"code\">model.method_name()</field>\n\b</record>\n\n");
         }
         break;
     case M_OBTN:
         if (record->event.pressed) {
-            SEND_STRING("<button name=\"action_button_method_name\" type=\"object\" string=\"ObjectButton\"/>");
+            SEND_STRING("<button name=\" action_button_method_name\"  type=\" object\"  string=\" ObjectButton\" />\n");
         }
         break;
     case M_OBTNBOX:
         if (record->event.pressed) {
-            SEND_STRING("<div class=\"oe_button_box\" name=\"model_name_button_box\">\n\t<button name=\"action_toggle_active\"\n\t\t\ttype=\"object\"\n\t\tconfirm=\"(Un)archiving a project automatically (un)archives its tasks and issues. Do you want to proceed?\"\n\t\t\tclass=\"oe_stat_button\"\n\t\t\ticon=\"fa-archive\">\n\t\t\t<field name=\"active\" widget=\"boolean_button\" options='{\"terminology\": \"archive\"}'/>\n\t</button>\n</div>");
+            SEND_STRING("<div class=\" oe_button_box\"  name=\"model_name_button_box\">\n\t<button name=\" action_toggle_active\" \n\ttype=\" object\"  \nconfirm=\"(Un)archiving a project automatically (un)archives its tasks and issues. Do you want to proceed?\"\nclass=\" oe_stat_button\" \nicon=\"fa-archive\">\n<field name=\" active\"  widget=\"boolean_button\"  options='{\"terminology\": \" archive\" }'/>\n\b</button>\n\b</div>\n\n");
         }
         break;
     case M_OFIELD:
         if (record->event.pressed) {
-            SEND_STRING("<field name='name'/>");
+            SEND_STRING("<field name='name'/>\n");
         }
         break;
     case M_ODATA:
         if (record->event.pressed) {
-            SEND_STRING("<?xml version='1.0' encoding='utf-8'?>\n<odoo>\n\t<data noupdate=\"1\">\n\t\t<!-- Add you code here -->\n\t</data>\n</odoo>");
+            SEND_STRING("<?xml version='1.0' encoding='utf-8'?>\n<odoo>\n\t<data noupdate=\"1\">\n\t<!-- Add you code here -->\n\b</data>\n\b</odoo>\n");
         }
         break;
     case M_OSTATUSBAR:
         if (record->event.pressed) {
-            SEND_STRING("<header>\n\t<field name=\"\" widget=\"statusbar\"/>\n</header>");
+            SEND_STRING("<header>\n\t<field name=\" \"  widget=\"statusbar\"/>\n\b</header>\n");
         }
         break;
     /*case M_OGRAF:
